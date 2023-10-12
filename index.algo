@@ -1,46 +1,86 @@
-distinct_element(set1, set2):
-//*initialize the sum//
-sum= 0
-//*compare elements from set1 with the elements in set2//
-for elements in set1:
-IF (element not in set 2) THEN
-    sum += the element
-END_IF
-//*compare from set2 with the elements in set1//
-for elements in set2:
-IF (element not in set1) THEN
-    sum += the element
-END_IF
+//Problem 1
+ALGORITHM Distinct_element
+VAR //varable declarations
+    set1,set2 : ARRAY_OF INTEGER[5];//set1 and set2 are both arrays of integers  
+    i,j,sum, counter : INTEGER;//i,j,sum, counter are all integers
 
-problem 2
-ALGORITHM Dot product
-//Algorithm name for the problem//
-VAR
-    PROCEDURE dot_product(v1, v2, result)
-    // function to calculate with//
-    VAR
-        input: v1-first vector , v2-second vector
-        output: result - variables to store the dot product
-        set result = 0
-    BEGIN
-        FOR i FROM 0 TO length of v1-1 STEP step  DO
-            set result to result + (v1[i]*v2[i])
-        END_FOR
-    END
 BEGIN
-    Input: n- Number of vector pairs
-    Input: vector_pairs- Array of vector pairs,where each pair is represented by two arrays
-        FOR i FROM 0 TO n-1 
-    set v1 to vector_pairs[i][0]
-    set v2 to vector_pairs[i][1]
-    set dot_product_result to 0
-    call dot_product(v1, v2, dot_product_result) 
-        IF (dot_product_result = 0) THEN
-            Display "pair ", i+1, ": vectors are orthogonal"
-            //if the dot_product_result=0, the vectors or oorthogonal//
-        ELSE
-            Display "pair", i+1, ":vectors are not orthogonal"
+    set1:= {6,4,2,3,7}
+    set2:= {5,2,4,8,3}
+    sum= 0
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO//The loop for i in set1
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO// the loop for j in set2
+            if(set1[i]=set2[j]){
+                BREAK;
+            }//if set1 is equal to set2 then it should break
+            counter:=j
+        END_FOR
+        IF (counter=set2.length-1) THEN
+            sum:=sum +set1[i];//set2 is not equal to set1 so a sum is added
         END_IF
-    END_IF
     END_FOR
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO//loop for i in set2
+        FOR j FROM 0 TO set1.length-1 STEP 1  DO//loop for j in set2
+            if(set2[i]=set1[j]){//
+                BREAK;
+            }//if set2 i is equal to set1 j then it should break
+            counter:=j
+        END_FOR
+        IF (counter=set1.length-1) THEN
+            sum:=sum +set2[i];//set1 is not equal to set2 so a sum is 
+        END_IF
+    END_FOR
+
+END
+
+
+
+//Problem 2
+FUNCTION dot_product(v1, v2) : INTEGER
+VAR// variable declarations
+    result : INTEGER:= 0;//result is an integer
+    i:INTEGER;// i is an integer
+BEGIN
+    FOR i FROM 0 TO length of v1-1 STEP step  DO
+        result := result + (v1[i]*v2[i])
+    END_FOR
+    RETURN result ;
+END
+// this is a function used to the determine the dot product of v1 and v2
+
+PROCEDURE dot_product(v1, v2, VAR result: INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO length of v1-1 STEP step  DO
+        result := result + (v1[i]*v2[i])
+    END_FOR
+END
+// this is a procedure used to the determine the dot product of v1 and v2
+
+ALGORITHM Dot product
+VAR// variable declarations
+    dot_product_result : INTEGER;//dot_product_result is an integer
+    vector1, vector2 : ARRAY_OF INTEGER[5];//vector1 and vector2 are array of integer
+BEGIN
+    vector1:= {11, 0, 22, 0, 30}
+    vector2:= {66, 0, 22, 44, 0}
+    dot_product({21,0,33,0}, {0,33,0,19}, dot_product_result) 
+        IF (dot_product_result = 0) THEN
+            Write("This pair of Vectors are orthogonal");
+            //the vector paires = dot_product_result=0 , it is orthogonal.
+        ELSE
+            Write("This pair of Vectors are not orthogonal");
+            //the vector paires<>dot_product_result=0 , it is orthogonal.
+        ELSE
+        END_IF
+    
+    dot_product_result = dot_product(vector1, vector2) 
+        IF (dot_product_result = 0) THEN
+            Write("This pair of Vectors are orthogonal");
+           // the vector paires = dot_product_result=0 , it is orthogonal.
+        ELSE
+            Write("This pair of Vectors are not orthogonal");
+            //the vector paires<>dot_product_result=0 , it is orthogonal.
+        END_IF
 END
