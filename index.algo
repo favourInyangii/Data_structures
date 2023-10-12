@@ -1,0 +1,46 @@
+distinct_element(set1, set2):
+//*initialize the sum//
+sum= 0
+//*compare elements from set1 with the elements in set2//
+for elements in set1:
+IF (element not in set 2) THEN
+    sum += the element
+END_IF
+//*compare from set2 with the elements in set1//
+for elements in set2:
+IF (element not in set1) THEN
+    sum += the element
+END_IF
+
+problem 2
+ALGORITHM Dot product
+//Algorithm name for the problem//
+VAR
+    PROCEDURE dot_product(v1, v2, result)
+    // function to calculate with//
+    VAR
+        input: v1-first vector , v2-second vector
+        output: result - variables to store the dot product
+        set result = 0
+    BEGIN
+        FOR i FROM 0 TO length of v1-1 STEP step  DO
+            set result to result + (v1[i]*v2[i])
+        END_FOR
+    END
+BEGIN
+    Input: n- Number of vector pairs
+    Input: vector_pairs- Array of vector pairs,where each pair is represented by two arrays
+        FOR i FROM 0 TO n-1 
+    set v1 to vector_pairs[i][0]
+    set v2 to vector_pairs[i][1]
+    set dot_product_result to 0
+    call dot_product(v1, v2, dot_product_result) 
+        IF (dot_product_result = 0) THEN
+            Display "pair ", i+1, ": vectors are orthogonal"
+            //if the dot_product_result=0, the vectors or oorthogonal//
+        ELSE
+            Display "pair", i+1, ":vectors are not orthogonal"
+        END_IF
+    END_IF
+    END_FOR
+END
